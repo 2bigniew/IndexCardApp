@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app="IndexCardApp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ucz się angielskiego w każdej wolnej chwili. Sprawdź się w grze, w której otrzymujesz punkty za język angielski!</title>
+    <meta name="author" content="Zbigniew Stasiak" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="container"></div>
+    <div class="pattern">
+        <div class="container">
+            <div class="page-header">
+                <h1>Fiszki</h1>
+                <h3>Ucz się angielskiego w każdej chwili! Poprostu... weź kolejną fiszkę!</h3>
+            </div>
+            <div ng-controller="indexCardCtrl as card">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="well well-md">
+                            <div class="thumbnail">
+                                <span ng-repeat="words in card.data" ng-if="card.activeCard === $index">{{$index+1+": "}}</span>
+                                <span ng-repeat="words in card.data" ng-if="card.activeCard === $index">{{words.polishWord}}</span>
+                                <span>&mdash;</span>
+                                <span ng-repeat="words in card.data" ng-if="card.activeCard === $index">{{words.englishWord}}</span>
+                            </div>
+                            <div class="row">
+                                <ul class="pagination pagination-md">
+                                    <li><a href="#" ng-click="card.setPreviousCard();"><span aria-hidden="true">&laquo;</span></a></li>
+                                    <li><a href="#" ng-click="card.setRandomCard();"><span aria-hidden="true">Losuj fiszkę</span></a></li>
+                                    <li><a href="#" ng-click="card.setNextCard();"><span aria-hidden="true">&raquo;</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+    <script src="js/controlers/indexCard.js"></script>
+    <script src="js/factories/dataService.js"></script>
+</body>
+</html>
